@@ -1,0 +1,25 @@
+input {
+  width: 30%;
+}
+
+.container {
+  // border: 1px solid black;
+
+  .current-wheather {
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    padding: 60px 0;
+    color: var(--text-title);
+  }
+}
+
+.title {
+  color: var(--text-title);
+}
+
+.p-inputgroup-addon {
+  .pi {
+    color: var(--text-title);
+  }
+}

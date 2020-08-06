@@ -1,0 +1,15 @@
+<div class="content"
+  fxLayout="row wrap"
+  fxLayoutGap="16px grid">
+  <div fxFlex="20%"
+    fxFlex.xs="100%"
+    fxFlex.sm="33%"
+    *ngFor="let favorite of favorites$ | async">
+    <app-card [style]="{height:'250px', cursor: 'pointer'}"
+      [header]="favorite?.LocalizedName"
+      [subheader]="favorite?.Temperature[degreeType]?.Value + '&deg;' + favorite?.Temperature[degreeType]?.Unit"
+      (click)="navigateToWheatherDetails(favorite)">
+      {{ favorite?.WeatherText }}
+    </app-card>
+  </div>
+</div>

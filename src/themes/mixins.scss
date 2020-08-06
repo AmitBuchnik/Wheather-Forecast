@@ -1,0 +1,5 @@
+@mixin custom-prop($prop: null, $value: null) {
+  @if ($prop and $value) {
+    #{$prop}: $value;
+  }
+}

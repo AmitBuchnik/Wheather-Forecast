@@ -1,0 +1,25 @@
+::ng-deep p-card {
+  .ui-card-body {
+    padding-top: 3em;
+  }
+
+  .ui-card-title,
+  .ui-card-subtitle {
+    text-align: center;
+  }
+
+  .ui-card-title {
+    font-size: 1.8em;
+  }
+
+  .ui-card-subtitle {
+    font-size: 16px;
+  }
+
+  .ui-card-content {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+    font-size: 1.8em;
+  }
+}

@@ -1,0 +1,29 @@
+@import 'colors';
+// @import 'variables';
+@import 'mixins';
+@import 'functions';
+
+@mixin light-theme {
+  $base-theme: (main-background-application: $main-background-application-light,
+      text-primary: $ui-text-primary-light,
+      text-color: $text-color-light,
+      text-title: $text-title-light);
+
+  $component-colors: (nav-bar-bg: $nav-bar-bg-light,
+      nav-link: $ui-primary-dark-50,
+      nav-link-active: $ui-primary-dark-90,
+      background-card: $background-card-light,
+      card-border-color: $card-border-color-light,
+      main-background-form-control: $main-background-form-control-light,
+      border-hover-focus-black-02: $border-hover-focus-black-02-light,
+      border-black-006: $border-black-006-light);
+
+  #{if(&, '&', ':root')} {
+
+    // Either include them at :root context or global
+    @each $key,
+    $value in map-merge-all($base-theme, $component-colors) {
+      @include custom-prop(--#{$key}, $value);
+    }
+  }
+}

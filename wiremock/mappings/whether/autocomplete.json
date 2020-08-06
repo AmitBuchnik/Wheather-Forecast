@@ -1,0 +1,34 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/locations/v1/cities/autocomplete",
+    "queryParameters": {
+      "apikey": {
+        "matches": "([A-Za-z0-9]*)"
+      },
+      "q": {
+        "matches": "([A-Z  a-z]*)"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "data": [{
+        "Version": 1,
+        "Key": "215854",
+        "Type": "City",
+        "Rank": 31,
+        "LocalizedName": "Tel Aviv",
+        "Country": {
+          "ID": "IL",
+          "LocalizedName": "Israel"
+        },
+        "AdministrativeArea": {
+          "ID": "TA",
+          "LocalizedName": "Tel Aviv"
+        }
+      }]
+    }
+  }
+}

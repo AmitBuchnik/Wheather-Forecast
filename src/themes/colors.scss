@@ -1,0 +1,62 @@
+$white: hsl(0, 0%, 100%);
+$black: #000;
+$base-blue: 208;
+
+$ui-primary-dark: #000;
+$ui-primary-light: #fff;
+
+$ui-primary-light-90: rgba($ui-primary-light, .9);
+$ui-primary-light-80: rgba($ui-primary-light, .8);
+$ui-primary-light-50: rgba($ui-primary-light, .5);
+$ui-primary-light-10: rgba($ui-primary-light, .1);
+$ui-primary-light-05: rgba($ui-primary-light, .05);
+$ui-primary-light-20: rgba($ui-primary-light, .2);
+$ui-primary-light-06: rgba($ui-primary-light, .06);
+
+$ui-primary-dark-90: rgba($ui-primary-dark, .9);
+$ui-primary-dark-80: rgba($ui-primary-dark, .8);
+$ui-primary-dark-50: rgba($ui-primary-dark, .5);
+$ui-primary-dark-10: rgba($ui-primary-dark, .1);
+$ui-primary-dark-20: rgba($ui-primary-dark, .2);
+$ui-primary-dark-06: rgba($ui-primary-dark, .06);
+
+// dark
+//----------------------------------------------------------
+
+$main-background-application-dark: #000912;
+$background-card-dark: #142737;
+$card-border-color-dark: $ui-primary-light-10;
+$ui-text-primary-dark: $white;
+$text-title-dark: #f4faff;
+$nav-bar-bg-dark: rgb(0, 21, 38);
+$text-color-dark: $white;
+$border-black-006-dark: hsla(hue($black), 0%, 100%, 0.06);
+$main-background-form-control-dark: hsl($base-blue, 27%, 24%);
+$border-hover-focus-black-02-dark: hsla(hue($black), 0%, 100%, 0.2);
+
+// $main-background-application-dark: hsl(var(--base-blue), 27%, 24%);
+// $main-background-application-octupus-dark: hsl(var(--base-blue), 100%, 4%);
+// $background-modal-primary-dark: hsl(var(--base-blue), 47%, 15%);
+// $border-black-006-dark: hsla(hue($black), 0%, 100%, 0.06);
+
+
+
+//light
+//----------------------------------------------------------
+
+$main-background-application-light: #D9D9D9;
+$background-card-light: #ffffff;
+$card-border-color-light: $ui-primary-dark-10;
+$ui-text-primary-light: $black;
+$text-title-light: rgba(0, 0, 0, .9);
+$nav-bar-bg-light: #f8f9fa;
+$text-color-light: $black;
+$border-black-006-light: hsla(hue($white), 0%, 100%, 0.06);
+$main-background-form-control-light: #ffffff;
+$border-hover-focus-black-02-light: hsla(hue($white), 0%, 100%, 0.2);
+
+// $main-background-application-light: hsl(var(--base-blue), 27%, 24%);
+// $main-background-application-octupus-light: hsl(hue($white), 0%, 85%);
+// $background-modal-primary-light: hsl(var(--base-blue), 47%, 15%);
+
+// $border-black-006-light: hsla(hue($white), 0%, 100%, 0.06);

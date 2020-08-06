@@ -1,0 +1,25 @@
+@function map-merge-all($maps...) {
+  $collection: ();
+
+  @each $map in $maps {
+    $collection: map-merge($collection, $map);
+  }
+
+  @return $collection;
+}
+
+// @function blend-alpha($foreground, $background) {
+//   // https://en.wikipedia.org/wiki/Alpha_compositing#Alpha_blending
+
+//   $fg-opacity: opacity($foreground);
+//   $bg-opacity: opacity($background);
+
+//   $opacity: $fg-opacity + $bg-opacity * (1 - $fg-opacity);
+//   $factor: $bg-opacity * (1 - $fg-opacity);
+
+//   $red: (red($foreground) * $fg-opacity + red($background) * $factor) / $opacity;
+//   $green: (green($foreground) * $fg-opacity + green($background) * $factor) / $opacity;
+//   $blue: (blue($foreground) * $fg-opacity + blue($background) * $factor) / $opacity;
+
+//   @return rgba($red, $green, $blue, $opacity);
+// }

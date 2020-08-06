@@ -1,0 +1,42 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/currentconditions/v1/([0-9])*",
+    "queryParameters": {
+      "apikey": {
+        "matches": "([A-Za-z0-9]*)"
+      },
+      "details": {
+        "matches": "([a-z]*)"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "data": [{
+        "LocalObservationDateTime": "2020-07-29T10:50:00+03:00",
+        "EpochTime": 1596009000,
+        "WeatherText": "Mostly sunny",
+        "WeatherIcon": 2,
+        "HasPrecipitation": false,
+        "PrecipitationType": null,
+        "IsDayTime": true,
+        "Temperature": {
+          "Metric": {
+            "Value": 30.2,
+            "Unit": "C",
+            "UnitType": 17
+          },
+          "Imperial": {
+            "Value": 86,
+            "Unit": "F",
+            "UnitType": 18
+          }
+        },
+        "MobileLink": "http://m.accuweather.com/en/il/tel-aviv/215854/current-weather/215854?lang=en-us",
+        "Link": "http://www.accuweather.com/en/il/tel-aviv/215854/current-weather/215854?lang=en-us"
+      }]
+    }
+  }
+}

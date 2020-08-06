@@ -1,0 +1,74 @@
+<!-- input -->
+
+<div class="p-grid p-fluid">
+  <div class="p-col-12 p-md-4">
+    <div class="p-inputgroup"
+      style="text-align: center;">
+      <span class="p-inputgroup-addon mr-2"><i class="pi pi-search"></i></span>
+      <input type="text"
+        class="ui-input"
+        [(ngModel)]="searchText"
+        (input)="onInput($event)"
+        autocomplete="on"
+        pInputText>
+    </div>
+  </div>
+</div>
+
+<div class="container"
+  *ngIf="currentWheather">
+  <div class="row">
+    <div class="col-12">
+      <div class="row align-items-center">
+        <div class="col-6">
+          <div class="d-flex flex-column title">
+            <div>{{  currentWheather?.LocalizedName }}</div>
+            <div>
+              {{  currentWheather?.Temperature[degreeType]?.Value + '&deg;' + currentWheather?.Temperature[degreeType]?.Unit }}
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="d-flex justify-content-end">
+            <img *ngIf="!currentWheather?.isFavorite; else isFavorite"
+              src="/assets/icons/heart.svg"
+              height="33"
+              alt="favorites_icon">
+            <ng-template #isFavorite>
+              <img *ngIf="currentWheather?.isFavorite; else isFavorite"
+                src="/assets/icons/heart_red.svg"
+                height="33"
+                alt="favorites icon">
+            </ng-template>
+            <button pButton
+              class="ml-2"
+              type="button"
+              label="Add to Favorites"
+              (click)="onToggleFavorite(currentWheather?.isFavorite)">
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- current weather -->
+  <div class="row">
+    <div class="col-12">
+      <div class="current-wheather">
+        {{ currentWheather?.WeatherText}}
+      </div>
+    </div>
+  </div>
+
+  <!-- 5-day forecast -->
+
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-5">
+    <app-card *ngFor="let forecast of currentWheather?.DailyForecasts"
+      class="col mb-4"
+      [style]="{height:'200px'}"
+      [header]="forecast?.Date | date: 'EEE'"
+      [subheader]="forecast?.Temperature?.Maximum?.Value + '&deg;' + forecast?.Temperature?.Maximum?.Unit">
+    </app-card>
+  </div>
+</div>

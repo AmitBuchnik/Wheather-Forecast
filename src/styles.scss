@@ -1,1 +1,27 @@
-/* You can add global styles to this file, and also import other style files */
+@import './themes/themes';
+
+// html,
+// body {
+//   font-family: Arial, Helvetica, sans-serif;
+// }
+
+html,
+body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  background-color: var(--main-background-application);
+
+  &.light {
+    @include light-theme;
+  }
+
+  &.dark {
+    @include dark-theme;
+  }
+
+}
+
+// :root {
+//   //var(--text-label-title)
+// }

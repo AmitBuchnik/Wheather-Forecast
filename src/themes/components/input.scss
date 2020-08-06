@@ -1,0 +1,43 @@
+@mixin ui-input-main-colors {
+  color: var(--text-color);
+  background: var(--main-background-form-control);
+  border: 1px solid var(--border-black-006);
+}
+
+@mixin input-base {
+  //   height: 36px;
+  font-size: 16px;
+  padding: .25rem .5rem;
+  line-height: 1.5;
+  border-radius: .2rem;
+  width: 100%;
+  font-weight: 400;
+  font-family: inherit;
+  transition: border-color .15s ease-in-out,
+    box-shadow .15s ease-in-out;
+}
+
+@mixin input-base-focus-hover {
+
+  &:focus,
+  &:hover {
+    @include ui-input-main-colors;
+  }
+
+  &:focus {
+    border: 1px solid #007AAA !important;
+    box-shadow: none !important;
+  }
+
+  &:hover {
+    border: 1px solid var(--border-hover-focus-black-02) !important;
+    box-shadow: none !important;
+  }
+}
+
+
+body .ui-input {
+  @include input-base;
+  @include ui-input-main-colors;
+  @include input-base-focus-hover;
+}

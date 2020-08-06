@@ -1,0 +1,30 @@
+@import 'colors';
+// Font
+
+$default-font-family: Arial,
+'Helvetica Neue',
+Helvetica,
+sans-serif;
+
+// Font weight
+$font-weight-bold: 700;
+$font-weight-normal: 400;
+
+// Font size
+$body-2-font-size: .875rem;
+$input-font-size: 16px;
+
+// Spacing
+$ui-spacing-xxxs: 2px;
+$ui-spacing-xxs: 4px;
+$ui-spacing-xs: 6px;
+$ui-spacing-s: 12px;
+$ui-spacing-m: 16px;
+$ui-spacing-l: 24px;
+$ui-spacing-xl: 36px;
+$ui-spacing-xxl: 48px;
+
+//Corner radius
+$ui-corner-radius-sm: $ui-spacing-xxxs;
+$ui-corner-radius-md: $ui-spacing-xxs;
+$ui-corner-radius-lg: $ui-spacing-xs;

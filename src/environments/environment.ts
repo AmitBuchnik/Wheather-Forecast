@@ -5,8 +5,8 @@
 export const environment = {
   production: false,
   apikey: "LYpXVHrGMFJFvTAYzkMdawdxIL2lIqBv",
-  // httpUrl: "http://localhost:8082/", // wiremock
-  httpUrl: "http://dataservice.accuweather.com/"
+  httpUrl: "http://localhost:8082/", // wiremock
+  // httpUrl: "http://dataservice.accuweather.com/"
 }
 
 /*

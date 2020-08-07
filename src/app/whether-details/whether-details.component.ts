@@ -42,7 +42,7 @@ export class WhetherDetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.initIsMetric();
+    this.initDegrresType();
 
     this.initRoutingParams();
 
@@ -51,18 +51,18 @@ export class WhetherDetailsComponent implements OnInit, OnDestroy {
     this.initDebounceGetData();
   }
 
-  initIsMetric() {
+  initDegrresType() {
     this.subSink.add(this.store.select(selectIsMetric)
       .subscribe(isMetric => {
         this.isMetric = isMetric;
 
-        if (isMetric) {
+        if (this.isMetric) {
           this.degreeType = DegreesTypes.Metric;
         } else {
           this.degreeType = DegreesTypes.Imperial;
         }
 
-        // load with the current degree unit
+        // reload with the current degree unit
         if (this.currentWheather) {
           this.store.dispatch(new LoadCurrentWeather({ serachText: this.searchText, isMetric: this.isMetric }));
         }
@@ -84,35 +84,32 @@ export class WhetherDetailsComponent implements OnInit, OnDestroy {
   }
 
   getWheatherByAutocomplete() {
-    this.subSink.add(this.store.select(selectCurrentCity)
-      .subscribe(currentCity => {
-        if (currentCity) {
-          // no need to dispatch search, an object is in state (occurs when switching screens)
-          this.searchText = currentCity;
-        } else { // first time load
-          this.locationService.getPosition().then(pos => {
-            console.log(`Positon: ${pos.lng} ${pos.lat}`);
+    this.locationService.getPosition().then(pos => {
+      console.log(`Positon: ${pos.lng} ${pos.lat}`);
 
-            const location: ILocation = {
-              lat: pos.lat,
-              lng: pos.lng
-            };
-            this.store.dispatch(new LoadCurrentWeatherByLatLng({ location: location, isMetric: this.isMetric }));
-          })
-            .catch(error => {
-              console.error(error.message);
+      const location: ILocation = {
+        lat: pos.lat,
+        lng: pos.lng
+      };
+      this.store.dispatch(new LoadCurrentWeatherByLatLng({ location: location, isMetric: this.isMetric }));
+    })
+      .catch(error => {
+        console.error(error.message);
 
-              this.searchText = "Tel Aviv";
-              this.store.dispatch(new LoadCurrentWeather({ serachText: this.searchText, isMetric: this.isMetric }));
-            });
-        }
-      }));
+        this.searchText = "Tel Aviv";
+        this.store.dispatch(new LoadCurrentWeather({ serachText: this.searchText, isMetric: this.isMetric }));
+      });
   }
 
   selectWheatherFromStore() {
     this.subSink.add(this.store.select(selectWeather)
       .subscribe(currentWheather => {
         this.currentWheather = currentWheather;
+
+        // update serach text by LocalizedName if search was made by lat,lng
+        if (this.currentWheather && !this.searchText) {
+          this.searchText = this.currentWheather.LocalizedName;
+        }
       }));
   }
 

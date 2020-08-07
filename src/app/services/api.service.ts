@@ -71,7 +71,7 @@ export class ApiService {
 
     getCurrentWheatherByLatLng$(location: ILocation, isMetric: boolean = true): Observable<WheatherModel> {
         const geopositionParams = new HttpParams()
-            .set('q', `${location.lat},${location.lat}`)
+            .set('q', `${location.lat},${location.lng}`)
             .set('details', 'false')
             .set('toplevel', 'false');
 

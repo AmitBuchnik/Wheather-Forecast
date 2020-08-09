@@ -7,7 +7,7 @@ export const environment = {
   apikey: "vPWr6kZiL91LA0E9zgkDlGgAdt1ZTl6c",
   // apikey: "LYpXVHrGMFJFvTAYzkMdawdxIL2lIqBv",
   // httpUrl: "http://localhost:8082/", // wiremock
-  httpUrl: "https://amiwheatherforecastaccuweather.herokuapp.com/http://dataservice.accuweather.com/"
+  httpUrl: "http://dataservice.accuweather.com/"
 }
 
 /*

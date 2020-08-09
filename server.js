@@ -8,6 +8,19 @@ const app = express();
 // Serve only the static files form the dist directory    
 app.use(express.static(__dirname + '/dist/wheather'));
 
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PATCH, PUT, DELETE, OPTIONS"
+  );
+  next();
+});
+
 app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname + '/dist/wheather/index.html'));
 });

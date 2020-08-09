@@ -42,31 +42,13 @@ export class WhetherDetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.initDegrresType();
-
     this.initRoutingParams();
 
     this.initErrorHandling();
 
     this.initDebounceGetData();
-  }
 
-  initDegrresType() {
-    this.subSink.add(this.store.select(selectIsMetric)
-      .subscribe(isMetric => {
-        this.isMetric = isMetric;
-
-        if (this.isMetric) {
-          this.degreeType = DegreesTypes.Metric;
-        } else {
-          this.degreeType = DegreesTypes.Imperial;
-        }
-
-        // reload with the current degree unit
-        if (this.currentWheather) {
-          this.store.dispatch(new LoadCurrentWeather({ serachText: this.searchText, isMetric: this.isMetric }));
-        }
-      }));
+    this.initDegrresType();
   }
 
   initRoutingParams() {
@@ -75,7 +57,7 @@ export class WhetherDetailsComponent implements OnInit, OnDestroy {
       if (name) { // if we navigated by clicking on a card in favorites screen
         this.store.dispatch(new LoadCurrentWeather({ serachText: name, isMetric: this.isMetric }));
         this.searchText = name;
-      } else { // in first time load or by switching screens
+      } else { // in first time load
         this.getWheatherByAutocomplete();
       }
       // selects the whether object from state
@@ -84,21 +66,29 @@ export class WhetherDetailsComponent implements OnInit, OnDestroy {
   }
 
   getWheatherByAutocomplete() {
-    this.locationService.getPosition().then(pos => {
-      console.log(`Positon: ${pos.lng} ${pos.lat}`);
+    this.subSink.add(this.store.select(selectCurrentCity)
+      .subscribe(currentCity => {
+        if (currentCity) {
+          // no need to dispatch search, an object is in state (occurs when switching screens)
+          this.searchText = currentCity;
+        } else { // first time load or changed degrees unit
+          this.locationService.getPosition().then(pos => {
+            console.log(`Positon: ${pos.lng} ${pos.lat}`);
 
-      const location: ILocation = {
-        lat: pos.lat,
-        lng: pos.lng
-      };
-      this.store.dispatch(new LoadCurrentWeatherByLatLng({ location: location, isMetric: this.isMetric }));
-    })
-      .catch(error => {
-        console.error(error.message);
+            const location: ILocation = {
+              lat: pos.lat,
+              lng: pos.lng
+            };
+            this.store.dispatch(new LoadCurrentWeatherByLatLng({ location: location, isMetric: this.isMetric }));
+          })
+            .catch(error => {
+              console.error(error.message);
 
-        this.searchText = "Tel Aviv";
-        this.store.dispatch(new LoadCurrentWeather({ serachText: this.searchText, isMetric: this.isMetric }));
-      });
+              this.searchText = "Tel Aviv";
+              this.store.dispatch(new LoadCurrentWeather({ serachText: this.searchText, isMetric: this.isMetric }));
+            });
+        }
+      }));
   }
 
   selectWheatherFromStore() {
@@ -109,6 +99,25 @@ export class WhetherDetailsComponent implements OnInit, OnDestroy {
         // update serach text by LocalizedName if search was made by lat,lng
         if (this.currentWheather && !this.searchText) {
           this.searchText = this.currentWheather.LocalizedName;
+        }
+      }));
+  }
+
+
+  initDegrresType() {
+    this.subSink.add(this.store.select(selectIsMetric)
+      .subscribe(isMetric => {
+        this.isMetric = isMetric;
+
+        if (isMetric) {
+          this.degreeType = DegreesTypes.Metric;
+        } else {
+          this.degreeType = DegreesTypes.Imperial;
+        }
+
+        // update current wheather degrees unit
+        if (this.currentWheather) {
+          this.store.dispatch(new LoadCurrentWeather({ serachText: this.currentWheather.LocalizedName, isMetric: this.isMetric }));
         }
       }));
   }

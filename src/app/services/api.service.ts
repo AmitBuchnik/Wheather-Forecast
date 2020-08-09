@@ -20,7 +20,7 @@ export class ApiService {
     readonly httpUrl = environment.httpUrl;
 
     constructor(private restService: RestService,
-        private foregroundScreenService: NgxSpinnerService,
+        private spinnerService: NgxSpinnerService,
         private messageService: MessageService) {
     }
 
@@ -35,7 +35,7 @@ export class ApiService {
             .set('details', 'false')
             .append('metric', isMetric.toString());
 
-        this.foregroundScreenService.show();
+        this.spinnerService.show();
 
         return this.restService.get(`locations/v1/cities/autocomplete`, { params: autocompleteParams })
             .pipe(mergeMap(autocomplete => {
@@ -53,7 +53,7 @@ export class ApiService {
                 mergeMap(wheatherModel => {
                     return this.restService.get(`forecasts/v1/daily/5day/${wheatherModel?.key}`, { params: forecastParams })
                         .pipe(map(forecast => {
-                            this.foregroundScreenService.hide();
+                            this.spinnerService.hide();
 
                             return <WheatherModel>{
                                 ...wheatherModel,
@@ -63,7 +63,7 @@ export class ApiService {
                 }),
                 catchError(
                     err => {
-                        this.foregroundScreenService.hide();
+                        this.spinnerService.hide();
                         return throwError(err);
                     }
                 ));
@@ -82,7 +82,7 @@ export class ApiService {
             .set('details', 'false')
             .append('metric', isMetric.toString());
 
-        this.foregroundScreenService.show();
+        this.spinnerService.show();
 
         return this.restService.get(`locations/v1/cities/geoposition/search`, { params: geopositionParams })
             .pipe(mergeMap(geoposition => {
@@ -100,7 +100,7 @@ export class ApiService {
                 mergeMap(wheatherModel => {
                     return this.restService.get(`forecasts/v1/daily/5day/${wheatherModel?.key}`, { params: forecastParams })
                         .pipe(map(forecast => {
-                            this.foregroundScreenService.hide();
+                            this.spinnerService.hide();
 
                             return <WheatherModel>{
                                 ...wheatherModel,
@@ -110,7 +110,7 @@ export class ApiService {
                 }),
                 catchError(
                     err => {
-                        this.foregroundScreenService.hide();
+                        this.spinnerService.hide();
                         return throwError(err);
                     }
                 ));

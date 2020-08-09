@@ -3,6 +3,8 @@ const express = require('express');
 
 const path = require('path');
 
+var cors = require('cors') ף
+
 const app = express();
 
 app.options('*', cors());

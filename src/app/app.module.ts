@@ -24,9 +24,9 @@ import { CoreModule } from './core/core.module';
 
 import { WhetherDetailsComponent } from './whether-details/whether-details.component';
 import { FavoirtesComponent } from './favoirtes/favoirtes.component';
-import { WeatherEffects } from './whether-details/ngrx/effects/weather.effects';
 import { CardComponent } from './components/card/card.component';
 import { environment } from 'src/environments/environment';
+import { WeatherEffects } from './ngrx/effects/weather.effects';
 
 @NgModule({
   declarations: [

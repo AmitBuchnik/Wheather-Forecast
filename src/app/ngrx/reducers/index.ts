@@ -3,9 +3,8 @@ import { ActionReducerMap, MetaReducer, Action } from '@ngrx/store';
 import { environment } from '../../../environments/environment';
 import { WheatherModel } from '../../models/wheather.model';
 import { FavoriteModel } from '../../models/favorites.model';
-import { WheatherActionTypes, WheatherAction } from '../../whether-details/ngrx/actions/weather.actions';
-import { FavoritesAction, FavoritesActionTypes } from 'src/app/favoirtes/ngrx/actions/favorites.actions';
-import { act } from '@ngrx/effects';
+import { FavoritesAction, FavoritesActionTypes } from 'src/app/ngrx/actions/favorites.actions';
+import { WheatherAction, WheatherActionTypes } from '../actions/weather.actions';
 
 export interface WeatherState {
   currentWeather: WheatherModel | null;

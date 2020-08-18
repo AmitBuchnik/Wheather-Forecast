@@ -10,13 +10,13 @@ import { WheatherModel } from '../models/wheather.model';
 import { Subject, Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { AppState, selectWeather, selectError, selectCurrentCity, selectIsMetric } from '../ngrx/reducers';
-import { LoadCurrentWeather, ToggleFavoriteFlag, LoadCurrentWeatherByLatLng, ToggleDegreesUnit } from './ngrx/actions/weather.actions';
 import { AsyncPipe } from '@angular/common';
-import { AddToFavorites, RemoveFromFavorites } from '../favoirtes/ngrx/actions/favorites.actions';
+import { AddToFavorites, RemoveFromFavorites } from '../ngrx/actions/favorites.actions';
 import { FavoriteModel } from '../models/favorites.model';
 import { LocationService } from '../core/services/location.service';
 import { ILocation } from '../interfaces/location.interface';
 import { DegreesTypes } from '../enums/degrees-types.enum';
+import { LoadCurrentWeather, LoadCurrentWeatherByLatLng, ToggleFavoriteFlag } from '../ngrx/actions/weather.actions';
 
 @Component({
   selector: 'app-whether-details',

@@ -4,8 +4,8 @@ import { Store } from '@ngrx/store';
 
 import { ThemeService } from '../services/theme.service';
 import { AppState, selectIsMetric } from 'src/app/ngrx/reducers';
-import { ToggleDegreesUnit } from 'src/app/whether-details/ngrx/actions/weather.actions';
 import { SubSink } from 'subsink';
+import { ToggleDegreesUnit } from 'src/app/ngrx/actions/weather.actions';
 
 @Component({
   selector: 'app-header',

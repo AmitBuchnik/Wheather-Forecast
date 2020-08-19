@@ -34,9 +34,9 @@
     "@ngrx/store": "^9.2.0",
     "@ngrx/store-devtools": "^9.2.0",
     "bootstrap": "^4.2.1",
+    "enhanced-resolve": "^4.3.0",
     "express": "^4.17.1",
     "jquery": "^3.4.1",
-    "moment": "^2.27.0",
     "ngx-spinner": "^10.0.1",
     "path": "^0.12.7",
     "primeicons": "^4.0.0",
@@ -45,8 +45,7 @@
     "subsink": "^1.0.1",
     "tslib": "^1.10.0",
     "typescript": "~3.7.5",
-    "zone.js": "~0.10.2",
-    "enhanced-resolve": "^4.3.0"
+    "zone.js": "~0.10.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.900.1",

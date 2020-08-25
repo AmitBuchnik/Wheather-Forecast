@@ -33,7 +33,8 @@ $text-color-dark: $white;
 $border-black-006-dark: hsla(hue($black), 0%, 100%, 0.06);
 $main-background-form-control-dark: hsl($base-blue, 27%, 24%);
 $border-hover-focus-black-02-dark: hsla(hue($black), 0%, 100%, 0.2);
-
+$nav-bar-togller-border-dark: #f8f9fa;
+$nav-bar-togller-bg-dark: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='white' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
 // $main-background-application-dark: hsl(var(--base-blue), 27%, 24%);
 // $main-background-application-octupus-dark: hsl(var(--base-blue), 100%, 4%);
 // $background-modal-primary-dark: hsl(var(--base-blue), 47%, 15%);
@@ -54,7 +55,8 @@ $text-color-light: $black;
 $border-black-006-light: hsla(hue($white), 0%, 100%, 0.06);
 $main-background-form-control-light: #ffffff;
 $border-hover-focus-black-02-light: hsla(hue($white), 0%, 100%, 0.2);
-
+$nav-bar-togller-border-light: rgba(0, 0, 0, 0.1);
+$nav-bar-togller-bg-light: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='black' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
 // $main-background-application-light: hsl(var(--base-blue), 27%, 24%);
 // $main-background-application-octupus-light: hsl(hue($white), 0%, 85%);
 // $background-modal-primary-light: hsl(var(--base-blue), 47%, 15%);

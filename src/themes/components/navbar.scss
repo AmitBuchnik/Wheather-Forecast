@@ -12,4 +12,12 @@
   .navbar-nav .nav-link {
     color: var(--nav-link) !important;
   }
+
+  .custom-toggler.navbar-toggler {
+    border-color: var(--nav-bar-togller-border);
+  }
+
+  .custom-toggler .navbar-toggler-icon {
+    background-image: var(--nav-bar-togller-bg);
+  }
 }

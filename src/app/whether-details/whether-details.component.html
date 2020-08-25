@@ -2,17 +2,20 @@
 
 <div class="p-grid p-fluid">
   <div class="p-col-12 p-md-4">
-    <!-- add reactive form for autocomplete -->
-    <div class="p-inputgroup"
-      style="text-align: center;">
-      <span class="p-inputgroup-addon mr-2"><i class="pi pi-search"></i></span>
-      <input type="text"
-        class="ui-input"
-        [(ngModel)]="searchText"
-        (input)="onInput($event)"
-        autocomplete="on"
-        pInputText>
-    </div>
+    <form action=""
+      [formGroup]="searchForm"
+      (ngSubmit)="onSubmit()">
+      <div class="p-inputgroup"
+        style="text-align: center;">
+        <span class="p-inputgroup-addon mr-2"><i class="pi pi-search"></i></span>
+        <input type="text"
+          class="ui-input"
+          formControlName="searchText"
+          (input)="onInput($event)"
+          autocomplete="on"
+          pInputText>
+      </div>
+    </form>
   </div>
 </div>
 

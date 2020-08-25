@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { debounceTime } from 'rxjs/operators';
+import { debounceTime, take } from 'rxjs/operators';
 
 import { MessageService } from 'primeng/api';
 import { SubSink } from 'subsink';
@@ -17,6 +17,7 @@ import { LocationService } from '../core/services/location.service';
 import { ILocation } from '../interfaces/location.interface';
 import { DegreesTypes } from '../enums/degrees-types.enum';
 import { LoadCurrentWeather, LoadCurrentWeatherByLatLng, ToggleFavoriteFlag } from '../ngrx/actions/weather.actions';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-whether-details',
@@ -25,7 +26,18 @@ import { LoadCurrentWeather, LoadCurrentWeatherByLatLng, ToggleFavoriteFlag } fr
 })
 export class WhetherDetailsComponent implements OnInit, OnDestroy {
 
-  searchText: string;
+  searchForm: FormGroup;
+
+  public get searchText(): string {
+    return this.searchForm.get('searchText').value;
+  }
+
+  public set searchText(value: string) {
+    this.searchForm.patchValue({
+      searchText: value
+    })
+  }
+
   currentWheather: WheatherModel;
 
   subSink = new SubSink();
@@ -38,17 +50,22 @@ export class WhetherDetailsComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private store: Store<AppState>,
     private locationService: LocationService,
+    private fb: FormBuilder,
     private messageService: MessageService) {
   }
 
   ngOnInit(): void {
+    this.initForm();
     this.initRoutingParams();
-
     this.initErrorHandling();
-
-    this.initDebounceGetData();
-
+    this.initGetData();
     this.initDegrresType();
+  }
+
+  initForm() {
+    this.searchForm = this.fb.group({
+      searchText: ['', Validators.required]
+    });
   }
 
   initRoutingParams() {
@@ -133,15 +150,20 @@ export class WhetherDetailsComponent implements OnInit, OnDestroy {
       }));
   }
 
-  initDebounceGetData() {
-    this.getData.pipe(debounceTime(1000))
-      .subscribe(searchText => {
-        this.store.dispatch(new LoadCurrentWeather({ serachText: searchText, isMetric: this.isMetric }));
-      });
+  initGetData() {
+    this.subSink.add(this.getData.subscribe(searchText => {
+      this.store.dispatch(new LoadCurrentWeather({ serachText: searchText, isMetric: this.isMetric }));
+    }));
   }
 
   onInput($event) {
-    this.getData.next($event.target.value);
+    // this.getData.next($event.target.value);
+  }
+
+  onSubmit() {
+    if (this.searchText) {
+      this.getData.next(this.searchText);
+    }
   }
 
   onToggleFavorite($event) {

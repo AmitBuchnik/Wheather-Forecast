@@ -41,7 +41,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
       $event.preventDefault();
     }
 
-
     this.isMetric = !this.isMetric;
     this.store.dispatch(new ToggleDegreesUnit(this.isMetric));
   }
